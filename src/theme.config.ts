@@ -2,7 +2,7 @@
 import { defineConfig } from "./toolkit/themeConfig";
 
 export default defineConfig({
-  siteName: "Souyer's Blog",
+  siteName: "Souyer's Blog(archive)",
   locale: "zh-CN", // 网站语言: "zh-CN" | "en"
   nav: [
     {
@@ -42,8 +42,8 @@ export default defineConfig({
     },
   ],
   brand: {
-    title: "Souyer's Blog",
-    subtitle: "Souyer的博客",
+    title: "Souyer's Blog(archive)",
+    subtitle: "Souyer的博客存档",
     logo: "",
   },
   cover: {

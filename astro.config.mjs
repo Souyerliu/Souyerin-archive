@@ -45,7 +45,7 @@ if (themeConfig.diagnostics?.suppressFsWatcherMaxListenersWarning !== false) {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://souyerin.pages.dev",
+  site: "https://souyerin.netlify.app",
   trailingSlash: "always",
   build: {
     format: "directory",

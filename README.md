@@ -1,3 +1,1 @@
-本博客继承自[souyerin-archive](https://github.com/Souyerliu/Souyerin-archive)，基于[astro-blog-shokax](https://github.com/theme-shoka-x/astro-blog-shokax)二次开发。
-_____
-WIP
+本博客为[Souyerin](https://github.com/Souyerliu/Souyerin)的存档站，保存已经完结的系列文章。

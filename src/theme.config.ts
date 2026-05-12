@@ -1,0 +1,224 @@
+// cannot use path alias here because unocss can not resolve it
+import { defineConfig } from "./toolkit/themeConfig";
+
+export default defineConfig({
+  siteName: "Souyer's Blog",
+  locale: "zh-CN", // 网站语言: "zh-CN" | "en"
+  nav: [
+    {
+      href: "/",
+      text: "首页",
+      icon: "i-ri-home-line",
+    },
+    {
+      text: "文章",
+      href: "/random/",
+      icon: "i-ri-quill-pen-fill",
+      dropbox: {
+        enable: true,
+        items: [
+          {
+            href: "/categories/",
+            text: "分类",
+            icon: "i-ri-book-shelf-fill",
+          },
+          {
+            href: "/tags/",
+            text: "标签",
+            icon: "i-ri-price-tag-3-fill",
+          },
+          {
+            href: "/archives/",
+            text: "归档",
+            icon: "i-ri-archive-line",
+          },
+        ],
+      },
+    },
+    {
+      text: "主站",
+      href: "https://souyerin.pages.dev",
+      icon: "i-ri-link",
+    },
+  ],
+  brand: {
+    title: "Souyer's Blog",
+    subtitle: "Souyer的博客",
+    logo: "",
+  },
+  cover: {
+    enable: true,
+    preload: true,
+    // 固定封面模式（可选）：
+    // - enable: 是否启用固定封面
+    // - url: 推荐填 "cover-1" ~ "cover-6"（来自 src/components/Images.astro 预设），
+    //        或者填 public 路径/远程 URL（会使用 <img> 兜底渲染）
+    fixedCover: {
+      enable: true,
+      url: "/images/bg.png",
+    },
+    // gradient: true, // 渐变模式
+    nextGradientCover: false, // 文章导航使用渐变背景
+  },
+  sidebar: {
+    author: "Souyer",
+    description: "日日进化中！",
+    social: {
+      github: {
+        url: "https://github.com/Souyerliu",
+        icon: "i-ri-github-fill",
+      },
+      bilibili: {
+        url: "https://space.bilibili.com/474896469",
+        icon: "i-ri-bilibili-fill",
+      },
+      netease: {
+        url: "https://music.163.com/#/user/home?id=1478960573",
+        icon: "i-ri-netease-cloud-music-line",
+      },
+      email: {
+        url: "mailto:zsy142857@126.com",
+        icon: "i-ri-mail-line",
+      },
+    },
+  },
+  footer: {
+    since: 2025,
+    icon: {
+      name: "sakura rotate",
+      color: "var(--color-pink)",
+    },
+    count: true,
+    powered: true,
+    icp: {
+      enable: false,
+      // icon: '/beian-icon.png',
+      icpnumber: "萌ICP备20260616号",
+      icpurl: "https://icp.gov.moe/?keyword=20260616",
+      // beian: '网安备案号',
+      // recordcode: 'xxxxx',
+    },
+  },
+  tagCloud: {
+    startColor: "var(--grey-6)",
+    endColor: "var(--color-blue)",
+  },
+  widgets: {
+    randomPosts: true,
+    recentComments: true,
+    recentCommentsLimit: 10,
+  },
+  comments: {
+    enable: false,
+    waline: {
+      // 替换为你的 Waline 服务端地址，例如: https://comments.example.com
+      serverURL: "",
+      // 推荐与站点语言保持一致
+      lang: "zh-CN",
+      emoji: [
+        "https://unpkg.com/@waline/emojis@1.0.1/weibo",
+        "https://unpkg.com/@waline/emojis@1.0.1/alus",
+        "https://unpkg.com/@waline/emojis@1.0.1/bilibili",
+        "https://unpkg.com/@waline/emojis@1.0.1/qq",
+        "https://unpkg.com/@waline/emojis@1.0.1/tieba",
+        "https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"
+      ],
+    },
+  },
+  hyc: {
+    // HYC 扩展总开关：关闭后其所有子功能不可用
+    enable: false,
+    aiSummary: {
+      // AI 摘要卡片开关（受 hyc.enable 总开关控制）
+      enable: true,
+      // 卡片标题
+      title: "AI 摘要",
+      // 是否显示摘要使用的模型名称
+      showModel: true,
+    },
+    aiRecommend: {
+      // AI 相近文章推荐开关（受 hyc.enable 总开关控制）
+      enable: true,
+      // 默认展示前 3 篇
+      limit: 3,
+      // 最低相似度阈值（0.4 = 40%）
+      minSimilarity: 0.4,
+    },
+  },
+  nyxPlayer: {
+    enable: true,
+    preset: "shokax",
+    darkModeTarget: ':root[data-theme="dark"]',
+    urls: [
+      {
+        name: "Souyer的歌单",
+        url: "https://music.163.com/#/playlist?id=2257046115",
+      },
+    ],
+  },
+  visibilityTitle: {
+    enable: true,
+    leaveTitle: "哦内盖~",
+    returnTitle: "祝你幸福。",
+    restoreDelay: 3000,
+  },
+  home: {
+    selectedCategories: [
+      { 
+        name: "CS70",
+        cover: "/images/penguin_and_pigeon.png",
+      }, 
+      { 
+        name: "人工智能导论" ,
+        cover: "/images/cover.jpg",
+      },
+    ],
+    pageSize: 10,
+    title: {
+      behavior: "default",
+      customTitle: "",
+    },
+  },
+  layout: {
+    mode: "three-column",
+    rightSidebar: {
+      order: ["announcement", "search", "calendar", "recentMoments", "randomPosts", "tagCloud"],
+      announcement: true,
+      search: true,
+      calendar: true,
+      recentMoments: true,
+      randomPosts: true,
+      tagCloud: true,
+    },
+  },
+  friends: {
+    title: "友链",
+    description: "卡片式展示，支持站点预览与主题色点缀。",
+    // avatar: "https://example.com/your-avatar.png",
+    // color: "var(--color-pink)",
+    // siteImage: "https://example.com/your-site-preview.png",
+    links: [
+      {
+        url: "https://astro.build/",
+        title: "Astro",
+        desc: "全站体验轻快的静态站点框架，适合内容型站点与博客。",
+        author: "Astro Team",
+        avatar: "https://avatars.githubusercontent.com/u/44914786?s=200&v=4",
+        color: "var(--color-orange)",
+        siteImage: "https://astro.build/assets/press/astro-logo-dark.svg",
+      },
+      {
+        url: "https://svelte.dev/",
+        title: "Svelte",
+        desc: "编译时框架，现代与简洁，组件写起来很顺手。",
+        author: "Svelte Team",
+        avatar: "https://avatars.githubusercontent.com/u/23617963?s=200&v=4",
+        color: "var(--color-red)",
+      },
+    ],
+  },
+  copyright: {
+    license: "CC-BY-NC-SA-4.0",
+    show: true,
+  },
+});

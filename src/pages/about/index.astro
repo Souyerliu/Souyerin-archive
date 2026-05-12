@@ -1,0 +1,148 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import themeConfig from "@/theme.config";
+import { getCollection } from "astro:content";
+
+const pageTitle = "关于";
+// ✅ 获取所有文章（排除 draft）
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+
+// ✅ 根据分类统计文章数量
+function countByCategory(category) {
+  return posts.filter(p =>
+    p.data.categories?.includes(category)
+  ).length;
+}
+
+// ✅ 你的学习计划（只需要维护 total）
+const plans = [
+  //{ name: "人工智能导论", category: "人工智能导论", total: 11 },
+
+  {
+    name: "UCB课程",
+    children: [
+      //{ name: "CS 70", category: "CS70", total: 9 },
+      { name: "CS 61A", category: "CS61A", total: 20 },
+      { name: "CS 61B", category: "CS61B", total: 20 },
+      { name: "DATA 8", category: "DATA8", total: 20 },
+      { name: "DATA 100", category: "DATA100", total: 20 },
+      { name: "DATA 140", category: "DATA140", total: 20 },
+      { name: "DATA 102", category: "DATA102", total: 20 },
+      { name: "EECS 127", category: "CS127", total: 20 },
+      { name: "CS 189", category: "CS189", total: 20 },
+    ],
+  },
+
+  { name: "统计学习方法", category: "统计学习方法", total: 30 },
+  { name: "Kaggle SQL", category: "KaggleSQL", total: 2 },
+];
+
+// ✅ 计算单个进度
+function calc(plan) {
+  const done = countByCategory(plan.category);
+  const progress = plan.total > 0 ? done / plan.total : 0;
+  return { done, progress };
+}
+
+// ✅ 总进度
+let totalDone = 0;
+let totalCount = 0;
+
+plans.forEach(plan => {
+  const done = countByCategory(plan.category);
+  totalDone += done;
+  totalCount += plan.total;
+});
+
+const totalProgress = totalCount > 0 ? totalDone / totalCount : 0;
+---
+
+<Layout pageTitle={pageTitle}>
+  <div class="wrap about-page">
+
+    <!-- 头部 -->
+    <div class="about-header">
+      <h2>{pageTitle}</h2>
+    </div>
+
+    <!-- 卡片区域 -->
+    <div class="about-grid">
+      <!-- 简介卡片 -->
+      <section class="about-card">
+        <h3>关于本站</h3>
+        <ul>
+          <li>这是Souyer's Blog的存档站，保留已完结的系列文章。 </li>  
+          <li>不定期更新……</del>
+        </ul>
+      </section>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .about-page {
+    padding: 1.5rem 1.75rem 2.5rem;
+  }
+
+  .about-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-header h2 {
+    margin: 0 0 0.35rem;
+    font-size: 1.75rem;
+    color: var(--grey-7);
+  }
+
+  .about-header p {
+    margin: 0;
+    color: var(--grey-6);
+  }
+
+  /* 网格布局 */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  /* 卡片 */
+  .about-card {
+    padding: 1.2rem;
+    border-radius: 0.9rem;
+    background: linear-gradient(135deg, var(--grey-0), var(--grey-1));
+    border: 1px solid var(--grey-2);
+    box-shadow: 0 0.6rem 1.2rem var(--box-bg-shadow);
+  }
+
+  .about-card h3 {
+    margin: 0 0 0.6rem;
+    color: var(--grey-7);
+  }
+
+  .about-card p,
+  .about-card li {
+    color: var(--grey-6);
+    line-height: 1.6;
+  }
+  .about-card:hover {
+    transform: translateY(-4px);
+    transition: 0.2s;
+  }
+
+  .about-card a {
+    color: var(--color-pink);
+    text-decoration: none;
+  }
+
+  .about-card a:hover {
+    text-decoration: underline;
+  }
+
+  
+  @media (max-width: 768px) {
+    .about-page {
+      padding: 1.25rem 1rem 2rem;
+    }
+  }
+</style>

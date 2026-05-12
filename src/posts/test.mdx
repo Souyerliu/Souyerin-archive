@@ -1,0 +1,299 @@
+---
+title: test
+date: 2025-09-24 23:06:14
+categories: [测试]
+tags:
+  - test
+---
+
+# 这是一级标题
+## 这是二级标题
+### 这是三级标题
+#### 这是四级标题
+
+这是正常文字   
+
+*这是斜体*   
+**这是粗体**
+
+this is `inline code`   
+
+~~这句话可以删除~~
+
+> This is
+> a blockquote
+>
+> > Nested
+> > Blockquote
+
+* 第一点
+* 第二点
+    * 第一部分
+    * 第二部分
+
+1. Item 1
+2. Item 2
+    a. item 3a
+    b. item 3b
+
+[link](https://www.zhihuishu.com)
+[华东师范大学统计学院]: https://stat.ecnu.edu.cn
+
+这是***
+这是---
+这是___
+
+```python
+a=1
+b=2
+c=a+b
+print(c)
+```
+
+|标题1 | 标题2 | 标题3|
+|--- | --- | ---|
+|*Italic* | `code` | **bold**|
+|1 | 2 | 3|
+
+[![春日影](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYms0NDNuMW9wZDRsZXl2cnJlZmN4ZjY3c2FsaWZ0YjY0bTR5azhqdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yy58vGm1XPXS09qBZ9/giphy.gif)](https://www.bilibili.com/video/BV1JHLUz4EUy)
+
+\* Italic \* | \` code \` | \*\* bold \*\* 
+
+组件测试：
+这里是 Note MDX 组件的快速示例，支持 `primary / info / success / warning / danger`。
+
+<Note type="primary" title="主色提示">
+  这是 primary 级别的提示卡片，适合突出重点。
+</Note>
+
+<Note type="info" title="信息说明">
+  这是 info 级别的提示卡片，用于补充说明。
+</Note>
+
+<Note type="success" title="操作成功">
+  这是 success 级别的提示卡片，用于成功状态提醒。
+</Note>
+
+<Note type="warning" title="注意事项">
+  这是 warning 级别的提示卡片，用于重要注意。
+</Note>
+
+<Note type="danger" title="风险提示">
+  这是 danger 级别的提示卡片，用于风险/错误提醒。
+</Note>
+
+下面是 Label 的示例（无图标）：
+
+<Label type="primary">Primary</Label>
+<Label type="info">Info</Label>
+<Label type="success">Success</Label>
+<Label type="warning">Warning</Label>
+<Label type="danger">Danger</Label>
+
+下面是下划线（Underline）示例：
+
+<Underline>下划线</Underline> \
+<Underline variant="wavy">波浪线</Underline> \
+<Underline variant="dot">着重点</Underline> \
+<Underline type="primary">紫色下划线</Underline> \
+<Underline variant="wavy" type="success">绿色波浪线</Underline> \
+<Underline variant="dot" type="warning">黄色着重点</Underline>
+
+下面是删除线（Strike）示例：
+
+<Strike>删除线</Strike>
+<Strike type="danger">红色删除线</Strike>
+
+下面是高亮（Highlight）示例：
+
+<Highlight>荧光高亮</Highlight>
+
+下面是文本颜色（Text）示例：
+
+<Text type="rainbow">赤橙黄绿青蓝紫</Text>
+<Text type="red">红色</Text>
+<Text type="pink">粉色</Text>
+<Text type="orange">橙色</Text>
+<Text type="yellow">黄色</Text>
+<Text type="green">绿色</Text>
+<Text type="aqua">靛青</Text>
+<Text type="blue">蓝色</Text>
+<Text type="purple">紫色</Text>
+<Text type="grey">灰色</Text>
+
+下面是快捷键、上标与下标示例：
+
+<Kbd>Ctrl</Kbd> + <Kbd>K</Kbd>
+
+H<Sup>2</Sup>O 与 CO<Sub>2</Sub>
+
+下面是折叠内容（Collapse）示例：
+
+<Collapse title="点击展开">这里是折叠内容。</Collapse>
+
+<Collapse title="默认展开" open>
+  这个折叠块默认展开。
+</Collapse>
+
+<Note type="info" title="数学小知识">
+  勾股定理：在直角三角形中，a<Sup>2</Sup> + b<Sup>2</Sup> = c<Sup>2</Sup>。
+
+  <Collapse title="更多信息">
+    <Underline variant="wavy" type="success">这里有更详细的说明</Underline>，
+    但涉及剧透：!!答案是 √(a² + b²)!!
+  </Collapse>
+</Note>
+
+下面是 Tabs 组件示例：
+
+<Tabs defaultValue="svelte">
+  <Tab label="Astro" value="astro">
+    Astro 适合做内容站点，默认 SSR 性能很好。
+  </Tab>
+  <Tab label="Svelte" value="svelte">
+    Svelte 适合做轻量交互，当前主题中的导航就使用了 Svelte 组件。
+  </Tab>
+  <Tab label="UnoCSS" value="uno">
+    UnoCSS 提供原子化样式能力，和主题变量配合很灵活。
+  </Tab>
+</Tabs>
+
+<details class="mdx-collapse">
+  <summary class="mdx-collapse__summary">默认折叠块</summary>
+  <div class="mdx-collapse__content">
+    这里是折叠的内容，可以很长...
+    $$
+    a^2+b^2=c^2
+    $$
+  </div>
+</details>
+
+<details class="mdx-collapse primary" style="--note-border: oklch(0.68 0.16 240);--note-bg: oklch(0.95 0.03 240);--note-text: oklch(0.45 0.12 240);--note-hover: oklch(0.6 0.15 240);"> 
+<summary class="mdx-collapse__summary">蓝色折叠块</summary> 
+<div class="mdx-collapse__content"> 
+  这是一个测试色块，颜色为蓝色。 
+</div> 
+</details>
+
+<details class="mdx-collapse primary">
+<summary class="mdx-collapse__summary">紫色折叠块</summary>
+<div class="mdx-collapse__content">
+  这是一个测试色块，颜色为紫色。
+</div>
+</details>
+
+<details class="mdx-collapse primary" style="--note-border: var(--color-red);--note-bg: var(--color-red-a1);--note-text: var(--color-red);--note-hover: oklch(0.65 0.22 20);">
+  <summary class="mdx-collapse__summary">红色折叠块</summary>
+  <div class="mdx-collapse__content">
+    这是红色测试块。
+  </div>
+</details>
+
+<details class="mdx-collapse primary" style="--note-border: var(--color-orange);--note-bg: oklch(0.95 0.04 42.4);--note-text: var(--color-orange);--note-hover: oklch(0.75 0.18 42.4);">
+  <summary class="mdx-collapse__summary">橙色折叠块</summary>
+  <div class="mdx-collapse__content">
+    这是橙色测试块。
+  </div>
+</details>
+
+<details class="mdx-collapse primary" style="--note-border: var(--color-yellow);--note-bg: oklch(0.97 0.04 91.8);--note-text: oklch(0.6 0.15 90);--note-hover: oklch(0.8 0.18 95);">
+  <summary class="mdx-collapse__summary">黄色折叠块</summary>
+  <div class="mdx-collapse__content">
+    这是黄色测试块。
+  </div>
+</details>
+
+<details class="mdx-collapse primary" style="--note-border: var(--color-green);--note-bg: oklch(0.96 0.03 130);--note-text: var(--color-green);--note-hover: oklch(0.6 0.16 140);">
+  <summary class="mdx-collapse__summary">绿色折叠块</summary>
+  <div class="mdx-collapse__content">
+    这是绿色测试块。
+  </div>
+</details>
+
+<details class="mdx-collapse primary" style="--note-border: var(--color-aqua);--note-bg: oklch(0.96 0.03 197);--note-text: var(--color-aqua);--note-hover: oklch(0.7 0.12 200);">
+  <summary class="mdx-collapse__summary">青色折叠块</summary>
+  <div class="mdx-collapse__content">
+    这是青色测试块。
+  </div>
+</details>
+
+<details class="mdx-collapse primary" style="--note-border: var(--color-grey);--note-bg: var(--grey-2);--note-text: var(--grey-7);--note-hover: var(--grey-5);">
+  <summary class="mdx-collapse__summary">灰色折叠块</summary>
+  <div class="mdx-collapse__content">
+    这是灰色测试块。
+  </div>
+</details>
+
+Quiz测试：
+<div class="quiz-group">
+  <div class="quiz-item single" data-quiz-type="single">
+    <div class="quiz-question">
+      下列叙述正确的是 
+      <span class="quiz-gap" data-answer="A、B、C都不对">
+        A、B、C都不对
+      </span>
+      <ul class="quiz-options list-none">
+        <li class="quiz-option">虚函数只能定义成无参函数</li>
+        <li class="quiz-option">虚函数不能有返回值</li>
+        <li class="quiz-option">能定义虚构造函数</li>
+        <li class="quiz-option" data-correct="true">A、B、C都不对</li>
+      </ul>
+      <div class="quiz-answer">
+        正确答案是 D。
+      </div>
+
+    </div>
+  </div>
+
+  <div class="quiz-item multi" data-quiz-type="multi">
+    <div class="quiz-question">
+      下列哪些项是“派生类对象替换基类对象”。
+      <ul class="quiz-options list-none">
+        <li class="quiz-option" data-correct="true"><code>p1=&circle1;</code></li>
+        <li class="quiz-option"><code>q1=&shape1;</code></li>
+        <li class="quiz-option" data-correct="true"><code>shape1=circle1;</code></li>
+        <li class="quiz-option"><code>circle1=shape1;</code></li>
+      </ul>
+      <div class="quiz-answer">
+        正确答案：A、C。
+      </div>
+    </div>
+  </div>
+  <div class="quiz-item true" data-quiz-type="true">
+    <div class="quiz-question">
+      编译时多态主要指运算符重载与函数重载，而运行时多态主要指虚函数。
+      <div class="quiz-answer">
+        ✅ 正确。
+      </div>
+    </div>
+  </div>
+  <div class="quiz-item false" data-quiz-type="false">
+    <div class="quiz-question">
+      太阳从西边升起。
+    </div>
+  </div>
+  <div class="quiz-item fill" data-quiz-type="fill">
+    <div class="quiz-question">
+      表达式结果为 <span class="quiz-gap" data-answer="9.4">9.4</span>。
+      <div class="quiz-answer">
+        注意运算顺序和数据类型。
+      </div>
+      <div class="quiz-mistake" data-type="错题备注">
+        常见错误答案：8.4
+      </div>
+    </div>
+  </div>
+</div>
+
+代码块：
+<div className="code-compare">
+
+```python
+def add(a, b):
+    return a + b
+```
+
+```r
+a <- 1
+```
+</div>

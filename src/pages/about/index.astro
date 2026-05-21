@@ -6,55 +6,6 @@ import { getCollection } from "astro:content";
 const pageTitle = "关于";
 // ✅ 获取所有文章（排除 draft）
 const posts = await getCollection("posts", ({ data }) => !data.draft);
-
-// ✅ 根据分类统计文章数量
-function countByCategory(category) {
-  return posts.filter(p =>
-    p.data.categories?.includes(category)
-  ).length;
-}
-
-// ✅ 你的学习计划（只需要维护 total）
-const plans = [
-  //{ name: "人工智能导论", category: "人工智能导论", total: 11 },
-
-  {
-    name: "UCB课程",
-    children: [
-      //{ name: "CS 70", category: "CS70", total: 9 },
-      { name: "CS 61A", category: "CS61A", total: 20 },
-      { name: "CS 61B", category: "CS61B", total: 20 },
-      { name: "DATA 8", category: "DATA8", total: 20 },
-      { name: "DATA 100", category: "DATA100", total: 20 },
-      { name: "DATA 140", category: "DATA140", total: 20 },
-      { name: "DATA 102", category: "DATA102", total: 20 },
-      { name: "EECS 127", category: "CS127", total: 20 },
-      { name: "CS 189", category: "CS189", total: 20 },
-    ],
-  },
-
-  { name: "统计学习方法", category: "统计学习方法", total: 30 },
-  { name: "Kaggle SQL", category: "KaggleSQL", total: 2 },
-];
-
-// ✅ 计算单个进度
-function calc(plan) {
-  const done = countByCategory(plan.category);
-  const progress = plan.total > 0 ? done / plan.total : 0;
-  return { done, progress };
-}
-
-// ✅ 总进度
-let totalDone = 0;
-let totalCount = 0;
-
-plans.forEach(plan => {
-  const done = countByCategory(plan.category);
-  totalDone += done;
-  totalCount += plan.total;
-});
-
-const totalProgress = totalCount > 0 ? totalDone / totalCount : 0;
 ---
 
 <Layout pageTitle={pageTitle}>

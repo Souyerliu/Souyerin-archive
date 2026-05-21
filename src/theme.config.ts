@@ -38,7 +38,7 @@ export default defineConfig({
     {
       text: "主站",
       href: "https://souyerin.pages.dev",
-      icon: "i-ri-link",
+      icon: "i-ri-external-link-line",
     },
   ],
   brand: {
@@ -172,6 +172,10 @@ export default defineConfig({
         name: "人工智能导论" ,
         cover: "/images/cover.jpg",
       },
+      { 
+        name: "CS61A",
+        cover: "/images/61A-header.png",
+      }, 
     ],
     pageSize: 10,
     title: {

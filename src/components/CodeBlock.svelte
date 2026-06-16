@@ -2,7 +2,6 @@
 
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import { css } from "../assets/fonts/MapleMono-CN-Regular.ttf?subsets";
   import ArrowDownSLine from "@/assets/icons/arrow-down-s-line.svg";
   import ArrowUpSLine from "@/assets/icons/arrow-up-s-line.svg";
   import CheckFill from "@/assets/icons/check-fill.svg";
@@ -193,7 +192,7 @@
     <div
       bind:this={container}
       class="content-wrapper"
-      style="font-family: {css.family};"
+      style="font-family: 'Maple Mono', 'Courier New', monospace;"
     >
       <slot />
     </div>
@@ -215,6 +214,12 @@
 
 <style>
   /* 基础布局 */
+  @font-face {
+    font-family: "Maple Mono";
+    src: url("../assets/fonts/MapleMono-CN-Regular.ttf") format("truetype");
+    font-display: swap;
+  }
+
   .codeblock {
     margin: 1.5rem 0;
     border-radius: 0.5rem;

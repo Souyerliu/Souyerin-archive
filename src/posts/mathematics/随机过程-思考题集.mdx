@@ -1318,17 +1318,75 @@ sticky: true
       $$
       f(x,s)=\frac{a}{2\pi s^{3/2} \sqrt{t - s}} \exp\left(-\frac{a^2}{2s} - \frac{(x - a)^2}{2(t - s)}\right).
       $$
+      ____
+      不过本题还有一个相对简单的证明方法（不使用上面的结论）：
+      $\tau_a$的密度函数为$\displaystyle g(s) = \frac{a}{\sqrt{2\pi s^3}} e^{-\frac{a^2}{2s}}$。由布朗运动的马氏性和独立增量性可知，在$\tau_a$给定的条件下，$B(t)$的分布
+      $$
+      \begin{aligned}
+      P(B(t) \leq x | \tau_a = s) &= P(B(t) \leq x | B(s) = a, B(u) < a, 0 < u < s)\\
+      = P(B(t) \leq x | B(s) = a) = P(B(t-s) \leq x - a).
+      \end{aligned}
+      $$
+      因此$B(t)$的条件密度为$\displaystyle f_{B(t)|\tau_a}(x|s) = \frac{1}{\sqrt{2\pi(t-s)}} e^{-\frac{(x-a)^2}{2(t-s)}}$，其中$t=s$时退化为$1_{\{x=a\}}$。   
+      $(B(t), \tau_a)$的联合密度函数$\displaystyle f(x, s) = g(s) f_{B(t)|\tau_a}(x|s) = \frac{a}{2\pi \sqrt{s^3(t-s)}} e^{-\frac{a^2}{2s} \frac{(x-a)^2}{2(t-s)}}$。
       </div>
       </details>
    </div>
    <div class="quiz-item">
       <div class="quiz-question">
-      
+      $W = \{W(t); t \geq 0\}$是带漂移布朗运动，即$W(t) = \mu t + \sigma B(t)$。指数布朗运动 $M(t) = e^{W(t)}$。求：
+      （1）$E(W(s)|W(t)=x)$；
+      （2）$E(M(s)|M(t)=x)$。
       </div>
       <details class="mdx-collapse primary">
       <summary class="mdx-collapse__summary">点击查看答案</summary>
       <div class="mdx-collapse__content">
-      
+      （1）
+      $$
+      \begin{aligned}
+      E(W(s)|W(t) = x)&= E(\mu s + \sigma B(s)|\mu t + \sigma B(t) = x)\\
+      &= \mu s + \sigma E(B(s)|B(t) = (x - \mu t)/\sigma)
+      \end{aligned}
+      $$
+      当$s \leq t$时
+      $$
+      \begin{aligned}
+      E(W(s)|W(t) = x) &= \mu s + \sigma E(B(s)|B(t) = (x - \mu t)/\sigma)\\
+      &= \mu s + \frac{s}{t}(x - \mu t) = xs/t.
+      \end{aligned}
+      $$
+      当$s > t$时
+      $$
+      \begin{aligned}
+      E(W(s)|W(t) = x) &= \mu s + \sigma E(B(s)|B(t) = (x - \mu t)/\sigma)\\
+      &= \mu s + (x - \mu t) = x + \mu(s - t).
+      \end{aligned}
+      $$
+      （2） $E(M(s)|M(t) = x) = e^{\mu s} E(e^{\sigma B(s)}|B(t) = (\ln x - \mu)/\sigma)$   
+      当$s \leq t$时，
+      $$
+      B(s) \sim N \left( \frac{s(\ln x - \mu t)}{t\sigma}, \frac{(t-s)s}{t} \right)
+      $$
+      因此
+      $$
+      E(e^{\sigma B(s)}|B(t) = (\ln x - \mu)/\sigma) = e^{\frac{s(\ln x - \mu t)}{t} + \frac{\sigma^2(t-s)s}{2t}}.
+      $$
+      进而
+      $$
+      E(M(s)|M(t) = x) = e^{\frac{s \ln x}{t} + \frac{\sigma^2(t-s)s}{2t}}.
+      $$
+      当$s > t$时
+      $$
+      B(s) \sim N \left( \frac{\ln x - \mu t}{\sigma}, s - t \right)
+      $$
+      因此
+      $$
+      E(e^{\sigma B(s)}|B(t) = (\ln x - \mu t)/\sigma) = e^{\frac{\ln x - \mu t + \frac{\sigma^2(s-t)}{2}}{t}}.
+      $$
+      进而
+      $$
+      E(M(s)|M(t) = x) = e^{\frac{\ln x + \mu(s-t) + \frac{\sigma^2(s-t)}{2}}{t}}.
+      $$
       </div>
       </details>
    </div>
@@ -1346,6 +1404,7 @@ sticky: true
       &=E(X_mE(X_n|X_0,\cdots,X_{n-1}))\\
       &=E(X_mX_{n-1})\\
       &=\cdots=E(X_m^2).
+      \end{aligned}
       $$
       </div>
     </div>

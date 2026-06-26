@@ -7,7 +7,6 @@ tags:
  - 数学分析
  - 实分析
 cover: ./实变函数-Cheat-Sheet/folder.png
-# sticky: true
 ---
 > 基于许忠好《实变函数概要》编写。
 # 集合论
@@ -61,7 +60,7 @@ cover: ./实变函数-Cheat-Sheet/folder.png
 + 对等定义：若存在一个从集合$A$到集合$B$的一一映射，则称$A$与$B$**对等**，记为$A\sim B$.
     + 对等关系属于等价关系，具有自反性、对称性与传递性。
 + **Bernstein定理**：若集合$A$与$B$的某一子集对等，$B$与$A$的某一子集对等，则$A\sim B$.
-    + 特例：若集合$A\subset C$，且$C\subset B\subset A$，则$A\sim B$。
+    + 特例：若集合$A\sim C$，且$C\subset B\subset A$，则$A\sim B$。
     > 设$-\infty\leq a< b\leq\infty$，则$(a,b)\sim(-\infty,\infty)$.
 + 基数定义：**基数**用于刻画相互对等的集合的某种共同属性，用$\overline{\overline{A}}$表示。其满足以下性质：
     + 若$A\sim B$，则$\overline{\overline{A}}=\overline{\overline{B}}$；
@@ -216,7 +215,7 @@ cover: ./实变函数-Cheat-Sheet/folder.png
         m^*(E_1+E_2)=m^*(E_1)+m^*(E_2)
         $$
         （即推出测度的有限可加性）
-        > 在上面的推论中，可以不要求$E_2$可测（因为$(T\cup E_2)\subset E_2\subset E_1^c$）
+        > 在上面的推论中，可以不要求$E_2$可测（因为$(T\cap E_2)\subset E_2\subset E_1^c$）
 + 卡氏条件简化版本：$E\in\mathcal{M}\Longleftrightarrow$对任意的开矩体$I$，有
     $$
     |I|\geq m^*(I\cap E)+m^*(I\cap E^c).
@@ -239,8 +238,8 @@ cover: ./实变函数-Cheat-Sheet/folder.png
 6. 若 $m(AB) < \infty$，则 $m(B \setminus A) = m(B) - m(AB)$；
 7. $\displaystyle m\left(\bigcup_{k=1}^{\infty} E_k\right) \leq \sum_{k=1}^{\infty} m(E_k)$
 + 测度的上、下连续性：设$\{E_n,n\geq 1\}\in\mathcal{M}$，
-    + **测度的下连续性**：若$E_1 \subset E_2 \subset \cdots$，则$\displaystyle\lim_{k \to \infty} m(E_k) = \lim_{k \to \infty} m(E_k)$；
-    + **测度的上连续性**：若$m(E_1) < \infty, \, E_1 \supset E_2 \supset \cdots$，则$\displaystyle\lim_{k \to \infty} m(E_k) = \lim_{k \to \infty} m(E_k)$。
+    + **测度的下连续性**：若$E_1 \subset E_2 \subset \cdots$，则$\displaystyle\lim_{k \to \infty} m(E_k) =  m(\lim_{k \to \infty} E_k)$；
+    + **测度的上连续性**：若$m(E_1) < \infty, \, E_1 \supset E_2 \supset \cdots$，则$\displaystyle\lim_{k \to \infty} m(E_k) = m(\lim_{k \to \infty} E_k)$。
 ## 可测集与开集
 + $\R^n$中的任意开矩体都是可测集$\Longrightarrow\R^n$中的任意开集都是可测集
     + 闭集为可测集；$G_\delta$型集和$F_\sigma$型集都是可测集；Borel集是可测集。
@@ -255,10 +254,10 @@ cover: ./实变函数-Cheat-Sheet/folder.png
         $$
     > 由此可见，可测集“差不多”就是开（闭）集。
 ## 不可测集
-+ 平移：设集合$A\subset\R^1$ ，称集合$a+A=\{a+x:x\in A\}$为$A$的一个**平移**。
++ 平移：设集合$A\subset\R^1$，称集合$a+A=\{a+x:x\in A\}$为$A$的一个**平移**。
 + 定理：设$a \in \mathbb{R}^1$。
     1. 对任意的$A \subset \mathbb{R}^1$，有$A = a + ((-a) + A)$。
-    2. 设$I$ 是开区间，则$a + I$ 也是开区间，且$|a + I| = |I|$；
+    2. 设$I$是开区间，则$a + I$也是开区间，且$|a + I| = |I|$；
     3. 设$A \subset \mathbb{R}^1$，则$m^*(a + A) = m^*(A)$；
     4. 若$A \in \mathcal{M}$，则$a + A \in \mathcal{M}$，且$m(a + A) = m(A)$。
 + 在$[0,1]$中定义等价关系$\sim$，即若$x,y\in[0,1]$且$x-y\in\mathbb{Q}$，则$x\sim y$。
@@ -312,15 +311,15 @@ cover: ./实变函数-Cheat-Sheet/folder.png
 + 记$\mathcal{MS}(E)=\{f\in\mathcal{M}(E):f$为简单函数$\}$，$\mathcal{MS}^+(E)=\{f\in\mathcal{MS}(E):f\geq 0\}$（非负简单可测函数）
     + 若$f,g\in\mathcal{MS}(E)$，则$f+g\in\mathcal{MS}(E)$。
 ## 可测函数逼近定理
-+ 设$f \in \mathcal{M}^+(E)$，则存在$E$ 上的非负简单可测函数列$\{ \phi_k, k \geq 1 \}$，使得对任意的$x \in E$,
++ 设$f \in \mathcal{M}^+(E)$，则存在$E$上的非负简单可测函数列$\{ \phi_k, k \geq 1 \}$，使得对任意的$x \in E$,
     $$
     \phi_k(x) \leq \phi_{k+1}(x), \quad \lim_{k \to \infty} \phi_k(x) = f(x).
     $$
-+ 设$f \in \mathcal{M}(E)$，则存在$E$ 上的简单可测函数列$\{ \psi_k, k \geq 1 \}$，满足
++ 设$f \in \mathcal{M}(E)$，则存在$E$上的简单可测函数列$\{ \psi_k, k \geq 1 \}$，满足
     $$
     |\psi_k(x)| \leq |f(x)|, \quad \lim_{k \to \infty} \psi_k(x) = f(x), \quad x \in E.
     $$
-若$f$ 有界，上述收敛还是一致的。 
+若$f$有界，上述收敛还是一致的。 
 + 由此可知，任何收敛的可测简单函数列的极限函数一定是可测函数。
 ## 可测函数的收敛性
 + “几乎处处”的刻画
@@ -495,7 +494,7 @@ cover: ./实变函数-Cheat-Sheet/folder.png
     当$\displaystyle(\mathcal{R}) \int_a^\infty f(x) \mathrm{d}x$绝对收敛时，
     $$
     (\mathcal{L}) \int_{[a, \infty)} f(x) \mathrm{d}x = (\mathcal{R}) \int_a^\infty f(x) \mathrm{d}x.
-    $$ 
+    $$
     > 即如果函数$f$在一个区间上勒贝格&黎曼可积，则两个积分值相同。
 ## Fubini定理
 + 设$f \in \mathcal{L}(\mathbb{R}^2)$，则  
@@ -509,21 +508,21 @@ cover: ./实变函数-Cheat-Sheet/folder.png
     \int_{\mathbb{R}} dx \int_{\mathbb{R}} f(x, y) \mathrm{d}y = \int_{\mathbb{R}} \mathrm{d}y \int_{\mathbb{R}} f(x, y) \mathrm{d}x
     $$
 + 其有一个“母定理”——Tonelli定理如下：设$f \in \mathcal{M}^+(\mathbb{R}^2)$，则  
-    1. 对几乎所有的$x \in \mathbb{R}$，$f(x, y)$ 作为$y$的函数 Lebesgue 可测；  
+    1. 对几乎所有的$x \in \mathbb{R}$，$f(x, y)$作为$y$的函数 Lebesgue 可测；  
     2. $\displaystyle I(x) \triangleq \int_{\mathbb{R}} f(x, y) \mathrm{d}y$几乎处处存在，且$I(x) \in \mathcal{M}^+(\mathbb{R}^1)$;  
     3. $\displaystyle\int_{\mathbb{R}} I(x) \mathrm{d}x = \int_{\mathbb{R}^2} f(x, y) \mathrm{d}x \mathrm{d}y$。
 # 微分与积分
 > 本章主要目标是将黎曼积分的牛顿莱布尼茨公式推广到Lebesgue积分上。
 ## 单调函数与有界变差函数
 + 设$f$为$[a,b]$上的单调函数，则$f$的不连续点全体为可数集。
-    + 推论：若$f$为$[a,b]$上的单调函数，则$f\in\mathcal{R}[a,b]$，进而$f\in\mathcal{R}[a,b]$。
+    + 推论：若$f$为$[a,b]$上的单调函数，则$f\in\mathcal{R}[a,b]$，进而$f\in\mathcal{L}[a,b]$。
 + 单调函数可微性定理：设$f$为$[a,b]$上单调不减的实值函数，则$f$在$[a,b]$上几乎处处可微，导函数$f'\in\mathcal{L}[a,b]$且$\displaystyle\int_a^bf'(x)\mathrm{d}x\leq f(b)-f(a)$。
 + 有界变差函数定义：设$f$为定义在$[a, b]$上的实值函数，$P = \{x_i, i = 0, 1, \cdots, n\}$为$[a, b]$的任一分割，且$a = x_0 < x_1 < \cdots < x_n = b$。我们称
-    $$  
+    $$
     V_f(P) = \sum_{i=1}^n |f(x_i) - f(x_{i-1})|
     $$
     为$f$关于分割$P$的变差。称
-    $$    
+    $$ 
     \bigvee_a^b (f) = \sup\{V_f(P) : P \text{ 为 } [a, b]\text{ 的分割}\}
     $$
     为$f$在$[a, b]$上的**全变差**。
@@ -531,11 +530,11 @@ cover: ./实变函数-Cheat-Sheet/folder.png
 + 有界变差函数性质：
     + 若$f \in\mathcal{BV}[a, b]$，则$f$有界，且对任意实数$\alpha$，$\alpha f\in\mathcal{BV}[a,b]$且$\displaystyle\bigvee_a^b(\alpha f)=|\alpha|\bigvee_a^b(f)$；
     + 若$f,g \in\mathcal{BV}[a, b]$，则
-        + $f+g\in\mathcal{BV}[a, b]$且$\bigvee_a^b(\alpha f+g)\leq \bigvee_a^b(\alpha f)+\bigvee_a^b(\alpha g)$；
+        + $f+g\in\mathcal{BV}[a, b]$且$\displaystyle\bigvee_a^b(f+g)\leq \bigvee_a^b(f)+\bigvee_a^b(g)$；
         + $f\cdot g\in\mathcal{BV}[a, b]$。
-    + 设$f$为$[a,b]$上的实值函数，则对任意$c\in(a,b)$，$\bigvee_a^b(f)=\bigvee_a^c(f)+\bigvee_c^b(f)$。
+    + 设$f$为$[a,b]$上的实值函数，则对任意$c\in(a,b),\displaystyle\bigvee_a^b(f)=\bigvee_a^c(f)+\bigvee_c^b(f)$。
     + 单调函数一定是有界变差函数；连续函数不一定是有界变差函数。
-+ 全变差函数定义：设$f\in\mathcal{BV}[a, b]$，则$f$上的全变差函数为$\displaystyle T_f(x)\bigvee_a^x(f),x\in[a,b]$。由此可知全变差函数一定非负且关于$x$单调不减。
++ 全变差函数定义：设$f\in\mathcal{BV}[a, b]$，则$f$上的全变差函数为$\displaystyle T_f(x)\coloneqq\bigvee_a^x(f),x\in[a,b]$。由此可知全变差函数一定非负且关于$x$单调不减。
     + 性质：$f$在$x\in [a,b]$上左（右）连续$T_f$在$x\in[a,b]$处左（右）连续。
 + Jordan分解定理：函数$f\in\mathcal{BV}[a,b]\Longleftrightarrow f$可表示为$[a,b]$上两个单调不减函数之差。
     + 推论：设$f\in\mathcal{BV}[a,b]$，则
@@ -563,4 +562,3 @@ cover: ./实变函数-Cheat-Sheet/folder.png
     $$
     \int_a^bf(x)g'(x)\mathrm{d}x=f(b)g(b)-f(a)g(a)-\int_a^bf'(x)g(x)\mathrm{d}x.
     $$
-$

@@ -25,6 +25,8 @@ pnpm-debug.log*
 
 .turbo
 
+.hyacine
+
 old_project
 
 .vercel

@@ -127,7 +127,7 @@ export default defineConfig({
   },
   hyc: {
     // HYC 扩展总开关：关闭后其所有子功能不可用
-    enable: false,
+    enable: true,
     aiSummary: {
       // AI 摘要卡片开关（受 hyc.enable 总开关控制）
       enable: true,
@@ -138,7 +138,7 @@ export default defineConfig({
     },
     aiRecommend: {
       // AI 相近文章推荐开关（受 hyc.enable 总开关控制）
-      enable: true,
+      enable: false,
       // 默认展示前 3 篇
       limit: 3,
       // 最低相似度阈值（0.4 = 40%）
@@ -176,6 +176,10 @@ export default defineConfig({
         name: "CS61A",
         cover: "/images/61A-header.png",
       }, 
+      {
+        name: "数学",
+        cover: "/images/mathchalkboard.jpg",
+      },
     ],
     pageSize: 10,
     title: {

@@ -72,6 +72,7 @@ export default defineConfig({
     randomPosts: true,
     recentComments: true,
     recentCommentsLimit: 10,
+    recentCommentsSiteRole: "archive",
   },
   comments: {
     enable: true,

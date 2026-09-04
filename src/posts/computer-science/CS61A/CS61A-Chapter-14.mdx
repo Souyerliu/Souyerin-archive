@@ -40,41 +40,55 @@ cover: ./61A-header.png
     #t
     ```
 + 对于多个`if`判断语句（`if-elif-else`结构），可以使用`cond`：
-    <div className="code-compare">
-    ```scheme
-    (cond ((> x 10) (print 'big))
-          ((> x 5) (print 'medium))
-          (else (print 'small)))
-    ```
+    <Tabs class="code-group" defaultValue="scheme">
+      <Tab label="Scheme" value="scheme">
 
-    ```python
-    if x > 10:
-        print('big')
-    elif x > 5:
-        print('medium')
-    else:
-        print('small')
-    ```
-    </div>
+      ```scheme
+      (cond ((> x 10) (print 'big))
+            ((> x 5) (print 'medium))
+            (else (print 'small)))
+      ```
+
+      </Tab>
+      <Tab label="Python" value="python">
+
+      ```python
+      if x > 10:
+          print('big')
+      elif x > 5:
+          print('medium')
+      else:
+          print('small')
+      ```
+
+      </Tab>
+    </Tabs>
     > 当然，上面条件分支里面的`print`也可以统一提到外面。
 ### 其他特殊语句
 + `begin`：begin用于顺序执行多个表达式，并返回最后一个表达式的值：
-<div className="code-compare">
-```scheme
-(cond ((> x 10) (begin (print 'big) (print 'guy)))
-      (else (begin (print 'small) (print 'fry))))
+<Tabs class="code-group" defaultValue="scheme">
+  <Tab label="Scheme" value="scheme">
 
-```
+  ```scheme
+  (cond ((> x 10) (begin (print 'big) (print 'guy)))
+        (else (begin (print 'small) (print 'fry))))
 
-```python
-if x > 10:
-    print('big')
-    print('guy')
-else:
-    print('small')
-    print('fry')
-```
-</div>
+  ```
+
+  </Tab>
+  <Tab label="Python" value="python">
+
+  ```python
+  if x > 10:
+      print('big')
+      print('guy')
+  else:
+      print('small')
+      print('fry')
+  ```
+
+  </Tab>
+</Tabs>
 + `let`：与`define`类似，但只用于临时定义变量（定义所在语句执行后变量释放），可用于定义局部变量：
 ```scheme
 (define c (let ((A 3)

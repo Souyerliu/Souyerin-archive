@@ -114,43 +114,50 @@ plt.show()
     $$
     这也可以看作对数据的线性拟合。
 + 让我们将[身高预测](/posts/data-science/data-8/data8-chapter-5/#实例身高预测)例子的回归线进行补全：
-<div className="code-compare">
-```python
-# 前面代码省略（见Chapter 5）
-from scipy import stats  
+<Tabs class="code-group" defaultValue="python">
+  <Tab label="Python" value="python">
 
-slope, intercept, r_value, p_value, std_err = stats.linregress(heights['Parent Average'], heights['Child'])
-x_vals = np.array([heights['Parent Average'].min(), heights['Parent Average'].max()])
-y_vals = slope * x_vals + intercept
-plt.plot(x_vals, y_vals, color='red', linewidth=2, label=f'Regression line (r={slope:.2f})')
-plt.xlabel('Parent Average Height', fontsize=12)
-plt.ylabel('Child Height', fontsize=12)
-plt.legend()
-plt.grid(True, linestyle='--', alpha=0.6)
-plt.show()
-```
+  ```python
+  # 前面代码省略（见Chapter 5）
+  from scipy import stats  
 
-```r
-# install.packages("ggpmisc")
-library(ggpmisc)  
-heights$Prediction <- sapply(heights$Parent.Average, predict_child)
-ggplot(heights, aes(x = Parent.Average)) +
-  geom_point(aes(y = Child), alpha = 0.6, size = 3, shape = 21, 
-             fill = "steelblue", colour = "white") +
-  geom_point(aes(y = Prediction), alpha = 0.6, size = 3, shape = 21, 
-             fill = "darkorange", colour = "white") +
-  labs(x = "Parent Average Height", y = "Child Height") +
-  geom_smooth(aes(y = Child), method = "lm", se = FALSE, 
-              color = "red", size = 1.2) +
-  stat_poly_eq(
-    aes(y = Child,label = paste(..eq.label.., ..rr.label.., sep = "~~~~")),
-    formula = y ~ x, parse = TRUE,
-    label.x = "left", label.y = "top",  
-    size = 4, color = "black"
-  ) +
-  theme_minimal()
-```
-</div>
+  slope, intercept, r_value, p_value, std_err = stats.linregress(heights['Parent Average'], heights['Child'])
+  x_vals = np.array([heights['Parent Average'].min(), heights['Parent Average'].max()])
+  y_vals = slope * x_vals + intercept
+  plt.plot(x_vals, y_vals, color='red', linewidth=2, label=f'Regression line (r={slope:.2f})')
+  plt.xlabel('Parent Average Height', fontsize=12)
+  plt.ylabel('Child Height', fontsize=12)
+  plt.legend()
+  plt.grid(True, linestyle='--', alpha=0.6)
+  plt.show()
+  ```
+
+  </Tab>
+  <Tab label="R" value="r">
+
+  ```r
+  # install.packages("ggpmisc")
+  library(ggpmisc)  
+  heights$Prediction <- sapply(heights$Parent.Average, predict_child)
+  ggplot(heights, aes(x = Parent.Average)) +
+    geom_point(aes(y = Child), alpha = 0.6, size = 3, shape = 21, 
+               fill = "steelblue", colour = "white") +
+    geom_point(aes(y = Prediction), alpha = 0.6, size = 3, shape = 21, 
+               fill = "darkorange", colour = "white") +
+    labs(x = "Parent Average Height", y = "Child Height") +
+    geom_smooth(aes(y = Child), method = "lm", se = FALSE, 
+                color = "red", size = 1.2) +
+    stat_poly_eq(
+      aes(y = Child,label = paste(..eq.label.., ..rr.label.., sep = "~~~~")),
+      formula = y ~ x, parse = TRUE,
+      label.x = "left", label.y = "top",  
+      size = 4, color = "black"
+    ) +
+    theme_minimal()
+  ```
+
+  </Tab>
+</Tabs>
 结果如下：
 ![regression-python](./DATA8-CHAPTER-10/regression_python.png)
 ![regression-r](./DATA8-CHAPTER-10/regression_r.png)

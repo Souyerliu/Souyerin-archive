@@ -13,24 +13,31 @@ cover: ./valentine_logo.png
 ## 将函数作用于列
 + 在之前的表格操作中，我们常常在创建新列时将已有列作为数组传入函数中进行转化运算。但是一些函数可能无法直接接受数组参数，而只能接受单个数字。
 + 比如下面这个例子：
-<div className="code-compare">
-```python
-import pandas as pd
-ages = pd.DataFrame({
-    'Person': ['A', 'B', 'C', 'D', 'E', 'F'],
-    'Age': [17, 117, 52, 100, 6, 101]
-})
-ages
-```
+<Tabs class="code-group" defaultValue="python">
+  <Tab label="Python" value="python">
 
-```r
-ages <- data.frame(
-    Person = c('A', 'B', 'C', 'D', 'E', 'F'),
-    Age = c(17, 117, 52, 100, 6, 101)
-)
-ages
-```
-</div>
+  ```python
+  import pandas as pd
+  ages = pd.DataFrame({
+      'Person': ['A', 'B', 'C', 'D', 'E', 'F'],
+      'Age': [17, 117, 52, 100, 6, 101]
+  })
+  ages
+  ```
+
+  </Tab>
+  <Tab label="R" value="r">
+
+  ```r
+  ages <- data.frame(
+      Person = c('A', 'B', 'C', 'D', 'E', 'F'),
+      Age = c(17, 117, 52, 100, 6, 101)
+  )
+  ages
+  ```
+
+  </Tab>
+</Tabs>
 | Person | Age |
 |:---------:|:--------:|
 | A         | 17       |
@@ -40,32 +47,46 @@ ages
 | E         | 6        |
 | F         | 101      |
 + 现在我们希望在创建新列时使用以下函数：
-<div className="code-compare">
-```python
-def cut_off_at_100(x):
-    """取x与100中的较小值。"""
-    return min(x, 100)
-```
+<Tabs class="code-group" defaultValue="python">
+  <Tab label="Python" value="python">
 
-```r
-cut_off_at_100 <- function(x) {
-  return(min(x, 100))
-}
-```
-</div>
+  ```python
+  def cut_off_at_100(x):
+      """取x与100中的较小值。"""
+      return min(x, 100)
+  ```
+
+  </Tab>
+  <Tab label="R" value="r">
+
+  ```r
+  cut_off_at_100 <- function(x) {
+    return(min(x, 100))
+  }
+  ```
+
+  </Tab>
+</Tabs>
 + 直接将`ages['Age']`传进`cut_off_at_100`中不太行，此时我们就可以使用：
 ### apply
 + python的pandas库中提供了`apply`函数（r中`apply`是原生函数）。其可以传入数组与函数，然后对每一列的每个元素调用函数，并形成一个包含返回值的新数组。
 + 比如上面的例子：
-<div className="code-compare">
-```python
-ages['Cut Off Age']=ages['Age'].apply(cut_off_at_100)
-```
+<Tabs class="code-group" defaultValue="python">
+  <Tab label="Python" value="python">
 
-```r
-ages$'Cut Off Age' <- sapply(ages$Age,cut_off_at_100)
-```
-</div>
+  ```python
+  ages['Cut Off Age']=ages['Age'].apply(cut_off_at_100)
+  ```
+
+  </Tab>
+  <Tab label="R" value="r">
+
+  ```r
+  ages$'Cut Off Age' <- sapply(ages$Age,cut_off_at_100)
+  ```
+
+  </Tab>
+</Tabs>
 | Person | Age | Cut Off Age |
 |:------:|:---:|:-----------:|
 | A      | 17  | 17          |
@@ -112,25 +133,32 @@ ages$'Cut Off Age' <- sapply(ages$Age,cut_off_at_100)
 | 3      | 75     | 64     | 72.06           | 2        | 1        | male   | 71          |
 | 3      | 75     | 64     | 72.06           | 2        | 2        | female | 68          |
 + 我们提取出`father`，`mother`和`childHeight`这三列，并计算父母身高的平均值，最终得到两列数据：
-<div className="code-compare">
-```python
-import pandas as pd
-family_heights = pd.read_csv('heights.csv')
-heights = pd.DataFrame({
-    'Parent Average': (family_heights['father'] + family_heights['mother']) / 2,
-    'Child': family_heights['childHeight']
-})
-heights
-```
+<Tabs class="code-group" defaultValue="python">
+  <Tab label="Python" value="python">
 
-```r
-family_heights <- read.csv('heights.csv')
-heights <- data.frame(
-  Parent.Average = (family_heights$father + family_heights$mother) / 2,
-  Child = family_heights$childHeight
-)
-```
-</div>
+  ```python
+  import pandas as pd
+  family_heights = pd.read_csv('heights.csv')
+  heights = pd.DataFrame({
+      'Parent Average': (family_heights['father'] + family_heights['mother']) / 2,
+      'Child': family_heights['childHeight']
+  })
+  heights
+  ```
+
+  </Tab>
+  <Tab label="R" value="r">
+
+  ```r
+  family_heights <- read.csv('heights.csv')
+  heights <- data.frame(
+    Parent.Average = (family_heights$father + family_heights$mother) / 2,
+    Child = family_heights$childHeight
+  )
+  ```
+
+  </Tab>
+</Tabs>
 | Parent Average  | childHeight |
 |:---------------:|:-----------:|
 | 72.75           | 73.2        |
@@ -144,88 +172,116 @@ heights <- data.frame(
 | 69.5            | 71          |
 | 69.5            | 68          |
 + 用散点图表示：
-<div className="code-compare">
-```python
-import matplotlib.pyplot as plt
-plt.scatter(heights['Parent Average'], heights['Child'], alpha=0.6, edgecolors='w', s=50)
-plt.xlabel('Parent Average Height')
-plt.ylabel('Child Height')
-plt.show()
-```
+<Tabs class="code-group" defaultValue="python">
+  <Tab label="Python" value="python">
 
-```r
-library(ggplot2)
-plot <- ggplot(heights, aes(x = Parent.Average, y = Child)) +
-  geom_point(alpha = 0.6, shape = 21, fill = "steelblue", color = "white", size = 2.5) +
-  labs(x = "Parent Average Height", y = "Child Height") +
-  theme_minimal()
-plot
-```
-</div>
+  ```python
+  import matplotlib.pyplot as plt
+  plt.scatter(heights['Parent Average'], heights['Child'], alpha=0.6, edgecolors='w', s=50)
+  plt.xlabel('Parent Average Height')
+  plt.ylabel('Child Height')
+  plt.show()
+  ```
+
+  </Tab>
+  <Tab label="R" value="r">
+
+  ```r
+  library(ggplot2)
+  plot <- ggplot(heights, aes(x = Parent.Average, y = Child)) +
+    geom_point(alpha = 0.6, shape = 21, fill = "steelblue", color = "white", size = 2.5) +
+    labs(x = "Parent Average Height", y = "Child Height") +
+    theme_minimal()
+  plot
+  ```
+
+  </Tab>
+</Tabs>
 ![scatter](./DATA8-CHAPTER-5/scatter_python.png)
 ![scatter](./DATA8-CHAPTER-5/scatter_r.png)
 可以看到二者基本呈正相关关系。~~也可以顺便看看python和r可视化的微妙区别~~
 + 下面我们探索数据预测的方法。一种比较直接的想法是，取预测使用的子女身高附近的所有父母平均身高的平均值作为预测值。
 + 具体而言，假设我们需要预测父母平均身高为$68$英寸时子女的身高，那么我们就取父母平均身高在$67.5$到$68.5$英寸之间的所有子女的身高，再取均值：
-    <div className="code-compare">
-    ```python
-    import numpy as np
-    close_to_68 = heights.loc[(heights['Parent Average']>=67.5) & (heights['Parent Average']<=68.5)]
-    np.average(close_to_68['Child'])
-    ```
+    <Tabs class="code-group" defaultValue="python">
+      <Tab label="Python" value="python">
 
-    ```r
-    close_to_68 <- heights[heights$Parent.Average >= 67.5 & heights$Parent.Average <= 68.5, ]
-    mean(close_to_68$Child)
-    ```
-    </div>
+      ```python
+      import numpy as np
+      close_to_68 = heights.loc[(heights['Parent Average']>=67.5) & (heights['Parent Average']<=68.5)]
+      np.average(close_to_68['Child'])
+      ```
+
+      </Tab>
+      <Tab label="R" value="r">
+
+      ```r
+      close_to_68 <- heights[heights$Parent.Average >= 67.5 & heights$Parent.Average <= 68.5, ]
+      mean(close_to_68$Child)
+      ```
+
+      </Tab>
+    </Tabs>
     得到结果约为`67.61`英寸。
 + 接下来我们尝试将上述过程包装为一个函数：
-<div className="code-compare">
-```python
-def predict_child(p_avg):
-    """通过父母平均身高预测子女身高。
-    """
-    close_points = heights.loc[(heights['Parent Average']>=p_avg - 0.5) & (heights['Parent Average']<=p_avg + 0.5)]
-    return np.average(close_points['Child'])  
+<Tabs class="code-group" defaultValue="python">
+  <Tab label="Python" value="python">
 
-predict_child(68) # 67.61                   
-```
+  ```python
+  def predict_child(p_avg):
+      """通过父母平均身高预测子女身高。
+      """
+      close_points = heights.loc[(heights['Parent Average']>=p_avg - 0.5) & (heights['Parent Average']<=p_avg + 0.5)]
+      return np.average(close_points['Child'])  
 
-```r
-predict_child <- function(p_avg) {
-  close_points <- heights[heights$Parent.Average >= p_avg - 0.5 & 
-                          heights$Parent.Average <= p_avg + 0.5, ]
-  mean(close_points$Child)
-}
+  predict_child(68) # 67.61                   
+  ```
 
-predict_child(66) # 66.18 
-```
-</div>
+  </Tab>
+  <Tab label="R" value="r">
+
+  ```r
+  predict_child <- function(p_avg) {
+    close_points <- heights[heights$Parent.Average >= p_avg - 0.5 & 
+                            heights$Parent.Average <= p_avg + 0.5, ]
+    mean(close_points$Child)
+  }
+
+  predict_child(66) # 66.18 
+  ```
+
+  </Tab>
+</Tabs>
 + 为考查预测的准确性，我们将预测值与真实值进行比较：
-<div className="code-compare">
-```python
-heights['Prediction']=heights['Parent Average'].apply(predict_child)                
-plt.scatter(heights['Parent Average'], heights['Child'], alpha=0.6, edgecolors='w', s=50)
-plt.scatter(heights['Parent Average'], heights['Prediction'], alpha=0.6, edgecolors='w', s=50)
-plt.xlabel('Parent Average Height')
-plt.ylabel('Child Height')
-plt.show()
-```
+<Tabs class="code-group" defaultValue="python">
+  <Tab label="Python" value="python">
 
-```r
-heights$Prediction <- sapply(heights$Parent.Average, predict_child)
-ggplot(heights, aes(x = Parent.Average, y = Prediction)) +
-  geom_point(alpha = 0.6,      
-             color = "white", 
-             fill = "gray",   
-             size = 2,       
-             shape = 21) +  
-  geom_point(alpha = 0.6, color = "white", fill = "gray", size = 2, shape = 21) +  
-  labs(x = "Parent Average Height", y = "Child Height") +
-  theme_minimal() 
-```
-</div>
+  ```python
+  heights['Prediction']=heights['Parent Average'].apply(predict_child)                
+  plt.scatter(heights['Parent Average'], heights['Child'], alpha=0.6, edgecolors='w', s=50)
+  plt.scatter(heights['Parent Average'], heights['Prediction'], alpha=0.6, edgecolors='w', s=50)
+  plt.xlabel('Parent Average Height')
+  plt.ylabel('Child Height')
+  plt.show()
+  ```
+
+  </Tab>
+  <Tab label="R" value="r">
+
+  ```r
+  heights$Prediction <- sapply(heights$Parent.Average, predict_child)
+  ggplot(heights, aes(x = Parent.Average, y = Prediction)) +
+    geom_point(alpha = 0.6,      
+               color = "white", 
+               fill = "gray",   
+               size = 2,       
+               shape = 21) +  
+    geom_point(alpha = 0.6, color = "white", fill = "gray", size = 2, shape = 21) +  
+    labs(x = "Parent Average Height", y = "Child Height") +
+    theme_minimal() 
+  ```
+
+  </Tab>
+</Tabs>
 结果：
 ![scatter_with_prediction_python](./DATA8-CHAPTER-5/scatter_with_prediction_python.png)
 ![scatter_with_prediction_r](./DATA8-CHAPTER-5/scatter_with_prediction_r.png)

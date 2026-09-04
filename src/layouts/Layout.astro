@@ -113,6 +113,14 @@ const headerCovers = advancedCarousel
     })
   : [];
 const resolvedHeaderCover = pageCover ?? fixedCover;
+const initialHeaderCover =
+  resolvedHeaderCover ?? (advancedCarousel ? headerCovers[0] : carouselCovers[0]);
+const headerCoverPreloadUrl =
+  coverConfig.enable !== false &&
+  coverConfig.preload === true &&
+  typeof initialHeaderCover === "string"
+    ? initialHeaderCover
+    : undefined;
 
 // Get all posts for widgets
 const allPosts = await getCollection("posts");
@@ -199,6 +207,15 @@ import Live2DWidget from "@/components/Live2DWidget.astro";
 
     <slot name="head" />
 
+    {headerCoverPreloadUrl && (
+      <link
+        rel="preload"
+        as="image"
+        href={headerCoverPreloadUrl}
+        fetchpriority="high"
+      />
+    )}
+
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 
     <title>{pageTitle}</title>
@@ -215,7 +232,6 @@ import Live2DWidget from "@/components/Live2DWidget.astro";
     <div id="container">
       <HeaderCover
         enable={coverConfig.enable}
-        preload={coverConfig.preload}
         fixedCover={resolvedHeaderCover}
         gradient={coverConfig.gradient}
         covers={advancedCarousel ? headerCovers : carouselCovers}

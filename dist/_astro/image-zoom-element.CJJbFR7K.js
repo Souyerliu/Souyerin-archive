@@ -1,4 +1,4 @@
-import{n as e,t}from"./i18n.DMYGFFuf.js";import{t as n}from"./scrollLock.CphHndS9.js";import{t as r}from"./web-components-base.CmBtcaLx.js";var i=220,a=class extends r{container=null;dialogElement=null;isOpen=!1;isClosing=!1;previewIndex=0;previewImages=[];cleanupImageListeners=null;closeTimer=null;releaseBodyScrollLock=null;t=e(t);renderShadowMarkup(){let e=this.t;return`
+import{n as e,t}from"./i18n.B1VJRHiF.js";import{t as n}from"./scrollLock.CphHndS9.js";import{t as r}from"./web-components-base.CmBtcaLx.js";var i=220,a=class extends r{container=null;dialogElement=null;isOpen=!1;isClosing=!1;previewIndex=0;previewImages=[];cleanupImageListeners=null;closeTimer=null;releaseBodyScrollLock=null;t=e(t);renderShadowMarkup(){let e=this.t;return`
       <div class="image-zoom-wrapper"><slot></slot></div>
       <dialog class="image-zoom-overlay hidden">
         <button type="button" class="image-zoom-nav image-zoom-nav-prev" aria-label="${e(`imageZoom.previous`)}">‹</button>

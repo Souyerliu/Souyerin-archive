@@ -4,7 +4,6 @@ import CoverImage from './CoverImage.astro'
 
 interface Props {
   enable?: boolean
-  preload?: boolean
   fixedCover?: ImageMetadata | string
   gradient?: boolean
   covers?: Array<ImageMetadata | string>
@@ -28,6 +27,9 @@ const minCoversForCarousel = advancedCarousel ? 2 : 6
 const isMultipleImages =
   !fixedCover && !gradient && covers.length >= minCoversForCarousel
 
+// 仅把最终参与轮播的图片输出到 HTML，避免浏览器先请求整组图片后再由脚本删除。
+const visibleCovers = isMultipleImages ? covers.slice(0, 6) : []
+
 // 单图模式图片来源
 const singleImage =
   fixedCover || (gradient ? 'https://7ed.net/bing/api' : covers[0])
@@ -41,7 +43,7 @@ const singleImage =
     >
       {isMultipleImages ? (
         <ul class="image-list">
-          {covers.map((cover, index) => (
+          {visibleCovers.map((cover, index) => (
             <CoverImage
               src={cover}
               alt={title}
@@ -65,18 +67,6 @@ const singleImage =
 
 <script>
   const imgs = document.querySelector('#imgs')
-  const imageList = imgs?.querySelector('.image-list')
-
-  if (imageList) {
-    const items = Array.from(imageList.children) as HTMLElement[]
-    const shuffle = (arr: HTMLElement[]) => [...arr].sort(() => Math.random() - 0.5)
-    const selected = shuffle(items).slice(0, 6)
-
-    imageList.replaceChildren(...selected)
-    selected.forEach((element, index) => {
-      element.style.animationDelay = `${index * 6}s`
-    })
-  }
 
   if (imgs) {
     const toggleHoverByPointer = (event: MouseEvent) => {

@@ -34,7 +34,7 @@ export default defineConfig({
     enable: true,
     preload: true,
     advancedCarousel: false,
-    fixedCover: { enable: true, url: "/images/bg.png" },
+    fixedCover: { enable: true, url: "/images/bg.webp" },
     nextGradientCover: false,
   },
   sidebar: {

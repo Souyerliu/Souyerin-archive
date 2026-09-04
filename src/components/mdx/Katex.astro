@@ -1,0 +1,34 @@
+---
+import { Buffer } from "node:buffer";
+import katex from "katex";
+
+interface Props {
+  value?: string;
+  valueBase64?: string;
+  displayMode?: boolean;
+  throwOnError?: boolean;
+}
+
+const { value = "", valueBase64, displayMode = false, throwOnError = false } = Astro.props;
+const mathValue = valueBase64
+  ? Buffer.from(valueBase64, "base64").toString("utf8")
+  : value;
+
+let html: string;
+try {
+  html = katex.renderToString(mathValue, {
+    displayMode,
+    throwOnError,
+  });
+} catch (error) {
+  const message = error instanceof Error ? error.message : String(error);
+  const escapedMessage = message
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+  html = `<span class="katex-error">${escapedMessage}</span>`;
+}
+---
+
+<Fragment set:html={html} />

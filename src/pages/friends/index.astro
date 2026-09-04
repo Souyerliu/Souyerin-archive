@@ -1,0 +1,71 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import FriendLinks from "@/components/friends/FriendLinks.astro";
+import themeConfig from "@/theme.config";
+
+const friendsConfig = themeConfig.friends;
+const personalLinks = friendsConfig?.personal ?? friendsConfig?.links ?? [];
+const toolLinks = friendsConfig?.tools ?? [];
+const pageTitle = friendsConfig?.title ?? "友链";
+---
+
+<Layout pageTitle={pageTitle}>
+  <div class="wrap friend-page">
+    <div class="friend-header">
+      <h2>友链列表</h2>
+    </div>
+    <section class="friend-section friend-links-section">
+      <FriendLinks links={personalLinks} />
+    </section>
+    <div class="friend-divider" role="separator"></div>
+    <div class="friend-header">
+      <h2>工具箱</h2>
+    </div>
+    <section class="friend-section friend-tools-section">
+      <FriendLinks links={toolLinks} />
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .friend-page {
+    padding: 1.5rem 1.75rem 2.5rem;
+  }
+
+  .friend-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .friend-section {
+    margin-top: 2rem;
+  }
+
+  .friend-header h2 {
+    margin: 0 0 0.35rem;
+    font-size: 1.75rem;
+    color: var(--grey-7);
+  }
+
+  .friend-divider {
+    margin: 2.5rem 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--grey-4),
+      transparent
+    );
+  }
+
+  .friend-tools-section h3,
+  .friend-links-section h3 {
+    margin: 0 0 0.75rem;
+    color: var(--grey-7);
+  }
+
+  @media (max-width: 768px) {
+    .friend-page {
+      padding: 1.25rem 1rem 2rem;
+    }
+  }
+</style>

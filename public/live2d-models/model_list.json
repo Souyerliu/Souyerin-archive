@@ -1,0 +1,19 @@
+{
+  "models": [
+    [
+      "sakiko/casual-2023",
+      "sakiko/event_297_story_01",
+      "sakiko/jh_school_winter-2023",
+      "sakiko/school_summer-2023",
+      "sakiko/school_winter-2023"
+    ],
+    [
+      "soyo/039_casual-2023",
+      "soyo/039_school_summer-2023",
+      "soyo/039_school_winter-2023",
+      "soyo/039_birthday_2024_ssr",
+      "soyo/039_live_default"
+    ]
+  ],
+  "messages": ["祥子 (Sakiko)", "素世 (Soyo)"]
+}
